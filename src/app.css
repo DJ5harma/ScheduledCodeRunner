@@ -14,10 +14,20 @@ section {
 button {
 	padding: 10px;
 	border-radius: 10px;
+	cursor: pointer;
 }
 form {
 	font-size: larger;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	gap: 10px;
+}
+input {
+	padding: 10px;
+	border-radius: 10px;
+}
+.selected {
+	background-color: yellow;
+	color: black;
 }
