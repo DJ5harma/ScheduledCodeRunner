@@ -21,6 +21,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		user_id: string;
 	};
 	if (!user_id) return Response.redirect(redirectUrl, 302);
+	event.locals.user_id = user_id;
 
 	const response = await resolve(event);
 	return response;

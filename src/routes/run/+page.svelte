@@ -1,9 +1,17 @@
 <script lang="ts">
+	import type { IRun } from '$lib/types';
+	import { onMount } from 'svelte';
+	import RunCard from '../../components/RunCard.svelte';
+
 	let file: File | null = null;
 	let language: string = 'cpp';
-	let output: string = '';
-	let error: string = '';
-	let mode: 'delay' | 'now' | 'everyday' = 'delay';
+	let mode: 'delay' | 'now' | 'everyday' = 'now';
+
+	let runResponse: IRun | null = null;
+	onMount(() => {
+		const storedLanguage = localStorage.getItem('language');
+		if (storedLanguage) language = storedLanguage;
+	});
 
 	async function handleSubmit(e: Event) {
 		e.preventDefault();
@@ -12,17 +20,16 @@
 			formData.append('file', file);
 			formData.append('language', language);
 			formData.append('mode', mode);
-
 			const response = await fetch('/api/run-code', {
 				method: 'POST',
 				body: formData
 			});
 
 			const result = await response.json();
-			if (mode !== 'now') return;
-			output = result.output || '';
-			error = result.error || '';
+			runResponse = result.run;
+			console.log({ runResponse });
 		}
+		localStorage.setItem('language', language);
 	}
 
 	function handleFileChange(event: Event) {
@@ -69,7 +76,9 @@
 	<div
 		style="background-color: rgba(0,0,0,0.5); border-radius: 20px; color:white; padding: 20px; gap: 10px; display: flex; flex-direction: column; align-items: center;"
 	>
-		<h2>{output ? 'Output' : error ? 'Error!' : 'Your output will be shown here...'}</h2>
-		<pre>{output} {error}</pre>
+		{#if !runResponse}
+			<h2>Your response will be shown here...</h2>
+		{:else}<RunCard run={runResponse} />
+		{/if}
 	</div>
 </section>
