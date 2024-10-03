@@ -10,8 +10,9 @@ This is an app made using SvelteKit (its sooo good)
 
 # To run this locally,
 
-- Make sure to have NodeJS and MongoDB installed on your machine (you can alternatively use your MongoAtlas URI instead of installing MongoDB locally)
-- Clone this repo and inside the root and change the name of sample.env to .env
+- Make sure to have NodeJS and MongoDB installed on your machine
+- (you can alternatively use your MongoAtlas URI instead of installing MongoDB locally)
+- Clone this repo and inside the root, change the name of sample.env to .env
 - (Init you can modify the MONGO_URI and/or JWT_SECRET if you like)
 - Open a terminal (root directory as this project) and run "npm i" to install all the required dependencies and then run "npm run dev".
 - It shall suggest a URL like "localhost:5173" or similar in the terminal itself. Go there in your browser and enjoy!!!😘
