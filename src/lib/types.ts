@@ -12,7 +12,7 @@ export interface IRun {
 	extension: 'java' | 'cpp' | 'py' | 'js';
 	status: 'success' | 'pending' | 'running' | 'error';
 	output: string;
-	mode: 'everyday' | 'delay' | 'now';
+	mode: 'cron' | 'delay' | 'now';
 	time: string;
 	createdAt: Date;
 	updatedAt: Date;

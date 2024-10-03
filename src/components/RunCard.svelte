@@ -15,7 +15,7 @@
 	<div>
 		<span>Extension: {extension}</span> |
 		<span
-			style={`color:${mode === 'delay' ? 'rgb(100,255,255)' : mode === 'everyday' ? 'rgb(255,100,255)' : 'rgb(255, 255, 100)'}`}
+			style={`color:${mode === 'delay' ? 'rgb(100,255,255)' : mode === 'cron' ? 'rgb(255,100,255)' : 'rgb(255, 255, 100)'}`}
 			>Mode: {mode}
 		</span>
 		|
