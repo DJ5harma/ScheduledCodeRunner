@@ -23,7 +23,7 @@ const RUN =
 				status: { type: String, enum: ['success', 'pending', 'running', 'error'] },
 				output: { type: String },
 				mode: { type: String, enum: ['everyday', 'delay', 'now'] },
-				time: { type: Date, default: Date.now }
+				time: { type: String, required: true }
 			},
 			{ timestamps: true }
 		)

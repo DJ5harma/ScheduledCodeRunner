@@ -3,6 +3,8 @@
 
 	export let run: IRun;
 	const { title, description, extension, mode, output, time, status } = run;
+	console.log(time.split(' '));
+	console.log(time.replaceAll(' ', '__'));
 </script>
 
 <div
@@ -23,7 +25,11 @@
 		>
 	</div>
 	<p style="color: black; background-color: white;">Output: {output}</p>
-	<p>Time: {new Date(time)}</p>
+	<p>
+		Time: {time.includes(',') || time.includes(' ')
+			? 'customTime: ' + time.replaceAll(' ', ' _ ')
+			: new Date(parseInt(time))}
+	</p>
 </div>
 
 <style>

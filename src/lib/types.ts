@@ -13,7 +13,7 @@ export interface IRun {
 	status: 'success' | 'pending' | 'running' | 'error';
 	output: string;
 	mode: 'everyday' | 'delay' | 'now';
-	time: number;
+	time: string;
 	createdAt: Date;
 	updatedAt: Date;
 }

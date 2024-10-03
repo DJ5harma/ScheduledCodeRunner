@@ -20,6 +20,7 @@
 		"@types/eslint": "^9.6.0",
 		"@types/jsonwebtoken": "^9.0.7",
 		"@types/node": "^22.7.4",
+		"@types/node-cron": "^3.0.11",
 		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.36.0",
@@ -37,6 +38,7 @@
 		"bcrypt": "^5.1.1",
 		"jsonwebtoken": "^9.0.2",
 		"mongoose": "^8.7.0",
+		"node-cron": "^3.0.3",
 		"svelte-french-toast": "^1.2.0"
 	}
 }

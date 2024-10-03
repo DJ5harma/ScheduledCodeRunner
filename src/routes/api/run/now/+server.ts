@@ -5,7 +5,7 @@ import extractForm from '../extract-form';
 
 const mode = 'now';
 export const POST: RequestHandler = async ({ request, locals }) => {
-	const { description, file, language, title, error, time } = await extractForm(request, mode);
+	const { description, file, language, title, error } = await extractForm(request);
 	if (error) return json({ error: error });
 
 	try {
@@ -19,7 +19,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 			status: error ? 'error' : 'success',
 			output: error || output,
 			extension,
-			time
+			time: Date.now().toString()
 		});
 		return json({ run: newRun });
 	} catch (err: unknown) {
