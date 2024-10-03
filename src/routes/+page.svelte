@@ -6,5 +6,5 @@
 	<h1>Online Compiler</h1>
 	<button on:click={() => goto('/form')}>Switch Account</button>
 	<button on:click={() => goto('/run')}>Schedule or Run code</button>
-	<button>Access all your runs</button>
+	<button on:click={() => goto('/previous_runs')}>Access all your runs</button>
 </section>

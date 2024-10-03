@@ -9,12 +9,12 @@
 >
 	<h1>Scheduled code runner</h1>
 	<button
-		style="border: solid; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center;"
+		style="border: solid; height: 40px; display: flex; justify-content: center; align-items: center;"
 		on:click={() => ($showMenu = !$showMenu)}
 	>
 		{#if $user}
 			<p>
-				{$user.username}
+				{$user.username}: Menu
 			</p>
 		{/if}
 	</button>
