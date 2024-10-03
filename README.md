@@ -17,3 +17,9 @@ This is an app made using SvelteKit (its sooo good)
 - (Init you can modify the MONGO_URI and/or JWT_SECRET if you like)
 - Open a terminal (root directory as this project) and run "npm i" to install all the required dependencies and then run "npm run dev".
 - It shall suggest a URL like "localhost:5173" or similar in the terminal itself. Go there in your browser and enjoy!!!😘
+
+Also, make sure you have the language installed on your local machine of which you'd like the code to run: 
+- java: jdk
+- python: python
+- javascript: nodeJs
+- c++: (installed via mingw64)
