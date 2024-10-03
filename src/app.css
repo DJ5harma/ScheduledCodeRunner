@@ -29,7 +29,8 @@ form {
 	align-items: center;
 	gap: 10px;
 }
-input {
+input,
+textarea {
 	padding: 10px;
 	border-radius: 10px;
 }

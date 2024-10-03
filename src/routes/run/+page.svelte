@@ -1,35 +1,51 @@
 <script lang="ts">
-	import type { IRun } from '$lib/types';
+	import type { ILanguage, IRun } from '$lib/types';
 	import { onMount } from 'svelte';
 	import RunCard from '../../components/RunCard.svelte';
+	import toast from 'svelte-french-toast';
 
 	let file: File | null = null;
-	let language: string = 'cpp';
+	let language: ILanguage = 'cpp';
 	let mode: 'delay' | 'now' | 'everyday' = 'now';
+	let delay = '',
+		title = '',
+		description = '';
 
 	let runResponse: IRun | null = null;
 	onMount(() => {
-		const storedLanguage = localStorage.getItem('language');
+		const storedLanguage = localStorage.getItem('language') as ILanguage;
+		const storedMode = localStorage.getItem('mode') as 'delay' | 'now' | 'everyday';
 		if (storedLanguage) language = storedLanguage;
+		if (storedMode) mode = storedMode;
 	});
 
 	async function handleSubmit(e: Event) {
 		e.preventDefault();
+		if (!file) return toast.error('File is not selected! please reselect after refresh!');
+		toast.loading('Taking your query...');
 		const formData = new FormData();
+		// console.log({ file, mode, language, delay, title, description });
+
 		if (file) {
 			formData.append('file', file);
 			formData.append('language', language);
 			formData.append('mode', mode);
-			const response = await fetch('/api/run-code', {
+			formData.append('delay', delay);
+			formData.append('title', title);
+			formData.append('description', description);
+			const response = await fetch(`/api/run/${mode}`, {
 				method: 'POST',
 				body: formData
 			});
 
 			const result = await response.json();
+			toast.dismiss();
+			if (result.error) return toast.error(result.error);
 			runResponse = result.run;
-			console.log({ runResponse });
+			toast.success('Query successful');
 		}
 		localStorage.setItem('language', language);
+		localStorage.setItem('mode', mode);
 	}
 
 	function handleFileChange(event: Event) {
@@ -52,12 +68,17 @@
 	</div>
 
 	<form on:submit={handleSubmit}>
+		<div style="display: flex; align-items: center; gap:10px">
+			<input type="text" placeholder="title" on:change={(e) => (title = e.currentTarget.value)} />
+			<textarea
+				placeholder="description"
+				name="description"
+				on:change={(e) => (description = e.currentTarget.value)}
+			></textarea>
+		</div>
 		<div>
 			<label for="file">Choose file:</label>
 			<input type="file" id="file" on:change={handleFileChange} required />
-		</div>
-
-		<div>
 			<label for="language">Select language:</label>
 			<select bind:value={language}>
 				<option value="cpp">C++</option>
@@ -67,7 +88,13 @@
 			</select>
 		</div>
 		{#if mode === 'delay'}
-			<input type="number" name="delay" placeholder="Enter delay in ms" />
+			<input
+				type="number"
+				value={delay}
+				on:change={(e) => (delay = e.currentTarget.value)}
+				name="delay"
+				placeholder="Enter delay in ms"
+			/>
 		{/if}
 
 		<button style="background-color: black; color:white">Submit!</button>

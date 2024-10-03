@@ -15,4 +15,5 @@
 		<span>Status: {run.status}</span>
 	</div>
 	<p>Output: {run.output}</p>
+	<p>Time: {new Date(run.time)}</p>
 </div>
