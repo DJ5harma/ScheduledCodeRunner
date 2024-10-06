@@ -1,3 +1,5 @@
+A full stack Code Scheduler made using SvelteKit.
+
 # You can:
 
 - Run code of the provided languages by uploading a file containing the code.
