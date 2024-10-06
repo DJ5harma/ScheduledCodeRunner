@@ -3,8 +3,6 @@
 
 	export let run: IRun;
 	const { title, description, extension, mode, output, time, status } = run;
-	console.log(time.split(' '));
-	console.log(time.replaceAll(' ', '__'));
 </script>
 
 <div

@@ -5,7 +5,7 @@ import extractForm from '../extract-form';
 import extractExtension from '../extract-extension';
 import { schedule, validate } from 'node-cron';
 
-const mode = 'delay';
+const mode = 'cron';
 
 export const POST: RequestHandler = async ({ request, locals }) => {
 	const { description, file, language, title, error, formData } = await extractForm(request);
